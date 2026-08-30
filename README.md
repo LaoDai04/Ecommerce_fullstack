@@ -18,3 +18,10 @@ npm install
 npm run dev
 
 running http://localhost:3000
+
+
+run docker with 
+docker run --env-file .env -p 8080:8080 springboot-project
+to include .env file
+
+change back and forth host.docker.internal and localhost
