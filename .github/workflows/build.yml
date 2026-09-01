@@ -42,6 +42,6 @@ jobs:
           - name: build and push Docker image to ECR
             run: |
               docker build -t ecommerce ./springboot-Projectg
-              docker tag ecommerce:latest 125273094628.dkr.ecr.us-east-1.amazonaws.com/ecommerce:latest
-              docker push 125273094628.dkr.ecr.us-east-1.amazonaws.com/ecommerce:latest
+              docker tag ecommerce:latest 125273094628.dkr.ecr.us-east-1.amazonaws.com/springboot_project
+              docker push 125273094628.dkr.ecr.us-east-1.amazonaws.com/springboot_project
             
