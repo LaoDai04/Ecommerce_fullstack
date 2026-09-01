@@ -21,7 +21,10 @@ jobs:
               distribution: 'temurin'
 
           - name: Build with Maven
-            run: ./springboot-Projectg/mvnw clean package
+            run: |
+              chmod +x springboot-Projectg/mvnw
+              cd springboot-Projectg
+              ./mvnw clean package
         
         #   - name: build Docker Image
         #     run: docker build -t ./springboot_Project/
