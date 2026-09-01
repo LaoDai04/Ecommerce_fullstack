@@ -7,8 +7,9 @@ on:
     pull_request:
 
 jobs:
-    build:
+    build-and-puh:
         runs-on: ubuntu-latest
+        environment: CERT
 
         steps:
           - name: Checkout code
@@ -20,11 +21,7 @@ jobs:
               java-version: '21'
               distribution: 'temurin'
 # todo: add tests later
-          - name: Build with Maven
-            run: |
-              chmod +x springboot-Projectg/mvnw
-              cd springboot-Projectg
-              ./mvnw clean package
+          
 
           - name: Configure AWS credentials
             uses: aws-actions/configure-aws-credentials@v4
@@ -36,6 +33,11 @@ jobs:
           - name: logging to AWS
             uses: aws-actions/amazon-ecr-login@v2
 
+          - name: Build with Maven
+            run: |
+              chmod +x springboot-Projectg/mvnw
+              cd springboot-Projectg
+              ./mvnw clean package
 
           - name: build and push Docker image to ECR
             run: |
