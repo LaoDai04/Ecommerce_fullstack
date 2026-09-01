@@ -19,12 +19,27 @@ jobs:
             with:
               java-version: '21'
               distribution: 'temurin'
-
+# todo: add tests later
           - name: Build with Maven
             run: |
               chmod +x springboot-Projectg/mvnw
               cd springboot-Projectg
               ./mvnw clean package
-        
-        #   - name: build Docker Image
-        #     run: docker build -t ./springboot_Project/
+
+          - name: Configure AWS credentials
+            uses: aws-actions/configure-aws-credentials@v4
+            with:
+              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              aws-region: us-east-1
+
+          - name: logging to AWS
+            uses: aws-actions/amazon-ecr-login@v2
+
+
+          - name: build and push Docker image to ECR
+            run: |
+              docker build -t ecommerce ./springboot-Projectg
+              docker tag ecommerce:latest 125273094628.dkr.ecr.us-east-1.amazonaws.com/ecommerce:latest
+              docker push 125273094628.dkr.ecr.us-east-1.amazonaws.com/ecommerce:latest
+            
