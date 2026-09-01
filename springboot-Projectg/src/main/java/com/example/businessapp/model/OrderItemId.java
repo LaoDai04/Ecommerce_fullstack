@@ -5,30 +5,30 @@ import java.io.Serializable;
 @Embeddable
 public class OrderItemId implements Serializable {
 
-    private Long orderId;
-    private Long itemId;
+    private Integer orderId;
+    private Integer itemId;
 
     public OrderItemId() {
     }
 
-    public OrderItemId(Long orderId, Long itemId) {
+    public OrderItemId(Integer orderId, Integer itemId) {
         this.orderId = orderId;
         this.itemId = itemId;
     }
 
-    public Long getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public Long getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 }

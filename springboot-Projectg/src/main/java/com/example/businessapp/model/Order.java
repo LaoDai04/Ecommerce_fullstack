@@ -4,12 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orders")
@@ -31,9 +26,9 @@ public class Order {
 
     }
 
-    public Order(Integer orderId, Customer customer, LocalDateTime createdAt) {
+    public Order(Integer orderId, Customer customerId, LocalDateTime createdAt) {
         this.orderId = orderId;
-        this.customerId = customerId;
+        this.customer = customerId;
         this.createdAt = createdAt;
     }
 
@@ -42,7 +37,7 @@ public class Order {
     }
 
     public Integer getCustomerId() {
-        return customerId;
+        return customer.getCustomerId();
     }
 
     public LocalDateTime getCreatedAt() {
