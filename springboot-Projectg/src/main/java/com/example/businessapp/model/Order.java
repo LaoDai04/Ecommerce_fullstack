@@ -16,11 +16,12 @@ import jakarta.persistence.Id;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_ID")
+    @Column(name = "order_id")
     private Integer orderId;
 
-    @Column(name = "customer_id")
-    private Integer customerId;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -30,7 +31,7 @@ public class Order {
 
     }
 
-    public Order(Integer orderId, Integer customerId, LocalDateTime createdAt) {
+    public Order(Integer orderId, Customer customer, LocalDateTime createdAt) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.createdAt = createdAt;

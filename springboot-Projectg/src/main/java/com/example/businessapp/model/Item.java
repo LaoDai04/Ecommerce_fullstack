@@ -14,7 +14,7 @@ import java.util.List;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_ID")
+    @Column(name = "item_id")
     private Integer itemId;
 
     @Column(name = "item_name")
@@ -27,6 +27,7 @@ public class Item {
     private String description;
 
     @ElementCollection
+    @CollectionTable(name = "item_category", joinColumns = @JoinColumn(name = "item_ID"))
     @Column(name = "category_value")
     private List<String> category;
 

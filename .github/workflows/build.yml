@@ -1,0 +1,27 @@
+name: build_pipeline
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+
+          - name: Set up Java
+            uses: actions/setup-java@v4
+            with:
+              java-version: '21'
+              distribution: 'temurin'
+
+          - name: Build with Maven
+            run: ./mvnw clean package
+        
+        #   - name: build Docker Image
+        #     run: docker build -t ./springboot_Project/
