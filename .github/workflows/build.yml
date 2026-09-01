@@ -40,8 +40,21 @@ jobs:
               ./mvnw clean package
 
           - name: build and push Docker image to ECR
+            id: build-image
+            env:
+              ECR_REGISTRY: 125273094628.dkr.ecr.us-east-1.amazonaws.com
+              ECR_REPOSITORY: springboot_project
+              IMAGE_TAG: ${{ github.sha }}
             run: |
               docker build -t ecommerce ./springboot-Projectg
-              docker tag ecommerce:latest 125273094628.dkr.ecr.us-east-1.amazonaws.com/springboot_project
-              docker push 125273094628.dkr.ecr.us-east-1.amazonaws.com/springboot_project
-            
+              docker tag ecommerce:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+              docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+              echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+              
+          - name: Fill in the new image ID in the Amazon ECS task definition
+            id: task-defintnion
+            uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+            with:
+              task-definition: task-definition.json
+              container-name: ecommerce-api
+              image: ${{ steps.build-image.outputs.image }}
