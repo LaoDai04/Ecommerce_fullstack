@@ -44,11 +44,11 @@
       "secrets": [
         {
           "name": "DB_PASSWORD",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:125273094628:secret:rds!db-6368f580-8784-49e9-bb76-fc6e7b85d53c-CwLpPE"
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:125273094628:secret:rds!db-6368f580-8784-49e9-bb76-fc6e7b85d53c-CwLpPE:password::"
         },
         {
           "name": "DB_USERNAME",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:125273094628:secret:rds!db-6368f580-8784-49e9-bb76-fc6e7b85d53c-CwLpPE"
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:125273094628:secret:rds!db-6368f580-8784-49e9-bb76-fc6e7b85d53c-CwLpPE:username::"
         }
       ],
       "logConfiguration": {
