@@ -1,6 +1,8 @@
 package com.example.businessapp.model;
 
-import jakarta.persistence.*;   
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -15,7 +17,7 @@ public class Item {
     private String itemName;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "description")
     private String description;
@@ -29,7 +31,7 @@ public class Item {
 
     }
 
-    public Item(Integer itemId, String itemName, Double price, String description, List<String> category) {
+    public Item(Integer itemId, String itemName, BigDecimal price, String description, List<String> category) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.price = price;
@@ -53,11 +55,11 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
