@@ -4,6 +4,8 @@ on:
     push:
         branches:
             - main
+          #switch to using branches to avoid running pipeline later
+          #commented out the build steps for now
     pull_request:
 
 jobs:
@@ -23,46 +25,47 @@ jobs:
 # todo: add tests later
           
 
-          - name: Configure AWS credentials
-            uses: aws-actions/configure-aws-credentials@v4
-            with:
-              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-              aws-region: us-east-1
 
-          - name: logging to AWS
-            uses: aws-actions/amazon-ecr-login@v2
+          # - name: Configure AWS credentials
+          #   uses: aws-actions/configure-aws-credentials@v4
+          #   with:
+          #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          #     aws-region: us-east-1
 
-          - name: Build with Maven
-            run: |
-              chmod +x springboot-Projectg/mvnw
-              cd springboot-Projectg
-              ./mvnw clean package
+          # - name: logging to AWS
+          #   uses: aws-actions/amazon-ecr-login@v2
 
-          - name: build and push Docker image to ECR
-            id: build-image
-            env:
-              ECR_REGISTRY: 125273094628.dkr.ecr.us-east-1.amazonaws.com
-              ECR_REPOSITORY: springboot_project
-              IMAGE_TAG: ${{ github.sha }}
-            run: |
-              docker build -t ecommerce ./springboot-Projectg
-              docker tag ecommerce:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-              docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-              echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          # - name: Build with Maven
+          #   run: |
+          #     chmod +x springboot-Projectg/mvnw
+          #     cd springboot-Projectg
+          #     ./mvnw clean package
+
+          # - name: build and push Docker image to ECR
+          #   id: build-image
+          #   env:
+          #     ECR_REGISTRY: 125273094628.dkr.ecr.us-east-1.amazonaws.com
+          #     ECR_REPOSITORY: springboot_project
+          #     IMAGE_TAG: ${{ github.sha }}
+          #   run: |
+          #     docker build -t ecommerce ./springboot-Projectg
+          #     docker tag ecommerce:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          #     echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
               
-          - name: Render Amazon ECS task definition
-            id: render-container
-            uses: aws-actions/amazon-ecs-render-task-definition@v1
-            with:
-              task-definition: task-definition.json
-              container-name: ecommerce-api
-              image: ${{ steps.build-image.outputs.image }}
+          # - name: Render Amazon ECS task definition
+          #   id: render-container
+          #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+          #   with:
+          #     task-definition: task-definition.json
+          #     container-name: ecommerce-api
+          #     image: ${{ steps.build-image.outputs.image }}
 
-          - name: Deploy to ECS
-            uses: aws-actions/amazon-ecs-deploy-task-definition@v2
-            with:
-              task-definition: ${{ steps.render-container.outputs.task-definition }}
-              cluster: ecommerce-dev-database
-              service: ecommerce-dev-task-2-service
-              wait-for-service-stability: true
+          # - name: Deploy to ECS
+          #   uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+          #   with:
+          #     task-definition: ${{ steps.render-container.outputs.task-definition }}
+          #     cluster: ecommerce-dev-database
+          #     service: ecommerce-dev-task-2-service
+          #     wait-for-service-stability: true

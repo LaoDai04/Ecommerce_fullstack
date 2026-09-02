@@ -1,11 +1,10 @@
 "use client"
+import useGetItems from "../../hooks/useGetItems";
 
  type Item = {
   itemId: string;
   itemName: string;
 };
-
-import useGetItems from "./getitems";
 
 export function Products() {
   const { data, isPending, isError, error } = useGetItems();
@@ -15,7 +14,6 @@ export function Products() {
     <br />
     {isPending && <p>Loading...</p>}
     {isError && <p>{error instanceof Error ? error.message : 'An error occurred'}</p>}
-   {console.log(data)}
     {data && (
       <ul>
         {data.map((item: Item) => (
