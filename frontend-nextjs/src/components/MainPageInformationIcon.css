@@ -1,0 +1,15 @@
+.info-dropdown {
+  position: absolute;
+  background-color: #93a87b;
+  padding: 12px;
+  box-shadow: 0.2 0.2 4 0;
+  border-radius: 3;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 1rem 0 1rem 0;
+  height: auto;
+  width: 200px;
+  border-radius: 3%;
+  font-size: larger;
+  font-weight: 500;
+}
