@@ -1,5 +1,5 @@
 # Frontend
-frontend/node_modules/
+frontend-nextjs/node_modules/
 frontend/.next/
 frontend/out/
 

@@ -1,18 +1,25 @@
-
 import { useQuery } from "@tanstack/react-query";
 
+export type Item = {
+  id: number;
+  name: string;
+  slug: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+};
 
-export default function useGetItems() { //todo: move this into hook folder, seperate the api functions. app/api and app/hooks
-const { data, isPending, isError, error } = useQuery({
-    queryKey: ['items'],
-    queryFn: async () => {
-      const response = await fetch(`http://localhost:8080/items`);
-      if (!response.ok) throw new Error('items not found');
-      console.log(response);
-      return response.json();
+export default function useGetItems() {
+  return useQuery<Item[], Error>({
+    queryKey: ["items"],
+    queryFn: async (): Promise<Item[]> => {
+      const response = await fetch("/api/products");
+
+      if (!response.ok) {
+        throw new Error("Items not found");
+      }
+
+      return (await response.json()) as Item[];
     },
-    
   });
-    return { data, isPending, isError, error };
-
-} 
+}

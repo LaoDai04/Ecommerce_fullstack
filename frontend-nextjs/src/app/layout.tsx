@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Providers from "./providers";
-import Header from "@/components/Header";
+import { Providers, CustomMainPageLayout } from "./providers/";
+import Header from "@/components/navBar/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,11 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="h-full bg-[#e3e6df]">
-      <body className="min-h-full flex flex-col">
+    <html className="h-full">
+      <body className="h-full min-h-screen  flex flex-col">
         <Providers>
           <Header />
-          {children}
+          <CustomMainPageLayout>{children}</CustomMainPageLayout>
         </Providers>
       </body>
     </html>

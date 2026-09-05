@@ -1,9 +1,12 @@
-"use client"
+"use client";
 import useGetItems from "../../hooks/useGetItems";
 
- type Item = {
-  itemId: string;
-  itemName: string;
+export type Item = {
+  id: number;
+  name: string;
+  slug: string;
+  price: number;
+  category: string;
 };
 
 export function Products() {
@@ -11,7 +14,7 @@ export function Products() {
 
   return (
     <div>
-    <br />
+    {/* <br />
     {isPending && <p>Loading...</p>}
     {isError && <p>{error instanceof Error ? error.message : 'An error occurred'}</p>}
     {data && (
@@ -21,7 +24,7 @@ export function Products() {
         ))}
       </ul>
     )}
-      <h1>Products</h1>
+      <h1>Products</h1> */}
     </div>
   );
 }

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DropDownIcon from "./MainPageInformationIcon";
+import ProductsDropdown from "./ProductDropdown";
+import { ChevronDown } from "lucide-react";
 type navBarItem = { pageName: string; url: string };
 
 export default function Header() {
@@ -23,7 +25,7 @@ export default function Header() {
         <Link
           href="/"
           className={
-            "relative self-stretch flex flex-row w-[12rem] items-center justify-center " +
+            "relative self-stretch flex flex-row w-[15rem] items-center justify-center " +
             (isHome ? "bg-[#C1DBB4]" : " bg-[#465E28]")
           }
         >
@@ -39,23 +41,30 @@ export default function Header() {
         </Link>
 
         {navBar.map((item) => (
-          <Link
+          <div
             key={item.url}
-            href={item.url}
             className={
-              "self-stretch flex items-center justify-center w-[12rem] " +
-              (pathname === item.url ? "bg-[#8CA966] " : " bg-[#465E28]")
+              " gap-1.5 group relative flex self-stretch w-[12rem] items-center justify-center bg-[#465E28]"
             }
           >
-            <h1 className="text-[1.3rem] font-medium text-[#E6EDDE]">
+            {item.pageName === "Products" ? <ProductsDropdown /> : null}
+
+            <Link
+              href={item.url}
+              className={
+                "flex w-full self-stretch items-center justify-center text-[1.3rem] font-medium text-[#E6EDDE]" +
+                (pathname === item.url ? " bg-[#8CA966]" : " bg-[#465E28]")
+              }
+            >
               {item.pageName}
-            </h1>
+              {item.pageName === "Products" && <ChevronDown size={18} />}
+            </Link>
             <div
               className={`absolute bottom-0 h-[3px] w-16 rounded-full bg-[#465E28]
                           origin-center transition-transform duration-200 ease-out
                           ${pathname === item.url ? "scale-x-100" : "scale-x-0"}`}
             />
-          </Link>
+          </div>
         ))}
 
         <div className="flex ml-auto gap-10">
