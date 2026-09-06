@@ -1,5 +1,5 @@
-import ImageLoader from "@/components/imageLoader";
-
+import ImageCarousel from "@/components/ImageCarousel";
+import ProductCard from "@/components/ProductCard";
 type NavItem = {
   name: string;
   href: string;
@@ -13,5 +13,113 @@ const navBar: NavItem[] = [
 ];
 
 export default function Home() {
-  return <p> </p>;
+  return (
+    <div className="w-full h-full">
+      <ImageCarousel />
+      <div className="flex gap-20">
+        <ProductCard
+          name={"test"}
+          price={0}
+          imageUrl={"https://picsum.photos/seed/10/200/350"}
+          averageRating={0}
+          reviewCount={0}
+        ></ProductCard>
+        <ProductCard
+          name={"test"}
+          price={0}
+          imageUrl={"https://picsum.photos/seed/10/200/350"}
+          averageRating={0}
+          reviewCount={0}
+        ></ProductCard>
+        <ProductCard
+          name={"test"}
+          price={0}
+          imageUrl={"https://picsum.photos/seed/10/200/350"}
+          averageRating={0}
+          reviewCount={0}
+        ></ProductCard>
+        <ProductCard
+          name={"test"}
+          price={0}
+          imageUrl={"https://picsum.photos/seed/10/200/350"}
+          averageRating={0}
+          reviewCount={0}
+        ></ProductCard>
+      </div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus maiores
+      consectetur, qui illo ducimus dignissimos alias quidem sed iste laudantium
+      voluptates incidunt id quia neque, minus unde iusto, molestias vero! Lorem
+      ipsum dolor sit, amet consectetur adipisicing elit. Nihil, recusandae!
+      Vero a quis neque sit, fuga facere laboriosam aperiam odit vitae eum
+      cumque, architecto molestiae eligendi quos, non ea porro. Lorem ipsum
+      dolor sit amet consectetur, adipisicing elit. Adipisci, cumque suscipit
+      tempora hic eligendi placeat praesentium totam, nostrum dignissimos neque
+      ipsam facilis delectus ducimus ea! At inventore sapiente sed nulla! Lorem
+      ipsum dolor sit amet consectetur adipisicing elit. Pariatur a
+      necessitatibus asperiores! Voluptates praesentium, quisquam saepe magni ut
+      dolores odio quasi voluptatibus fugit, quam illo omnis nesciunt doloremque
+      amet tempore? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Possimus maiores consectetur, qui illo ducimus dignissimos alias quidem
+      sed iste laudantium voluptates incidunt id quia neque, minus unde iusto,
+      molestias vero! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      Nihil, recusandae! Vero a quis neque sit, fuga facere laboriosam aperiam
+      odit vitae eum cumque, architecto molestiae eligendi quos, non ea porro.
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci, cumque
+      suscipit tempora hic eligendi placeat praesentium totam, nostrum
+      dignissimos neque ipsam facilis delectus ducimus ea! At inventore sapiente
+      sed nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Pariatur a necessitatibus asperiores! Voluptates praesentium, quisquam
+      saepe magni ut dolores odio quasi voluptatibus fugit, quam illo omnis
+      nesciunt doloremque amet tempore? Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Possimus maiores consectetur, qui illo ducimus
+      dignissimos alias quidem sed iste laudantium voluptates incidunt id quia
+      neque, minus unde iusto, molestias vero! Lorem ipsum dolor sit, amet
+      consectetur adipisicing elit. Nihil, recusandae! Vero a quis neque sit,
+      fuga facere laboriosam aperiam odit vitae eum cumque, architecto molestiae
+      eligendi quos, non ea porro. Lorem ipsum dolor sit amet consectetur,
+      adipisicing elit. Adipisci, cumque suscipit tempora hic eligendi placeat
+      praesentium totam, nostrum dignissimos neque ipsam facilis delectus
+      ducimus ea! At inventore sapiente sed nulla! Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Pariatur a necessitatibus asperiores!
+      Voluptates praesentium, quisquam saepe magni ut dolores odio quasi
+      voluptatibus fugit, quam illo omnis nesciunt doloremque amet tempore?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus maiores
+      consectetur, qui illo ducimus dignissimos alias quidem sed iste laudantium
+      voluptates incidunt id quia neque, minus unde iusto, molestias vero! Lorem
+      ipsum dolor sit, amet consectetur adipisicing elit. Nihil, recusandae!
+      Vero a quis neque sit, fuga facere laboriosam aperiam odit vitae eum
+      cumque, architecto molestiae eligendi quos, non ea porro. Lorem ipsum
+      dolor sit amet consectetur, adipisicing elit. Adipisci, cumque suscipit
+      tempora hic eligendi placeat praesentium totam, nostrum dignissimos neque
+      ipsam facilis delectus ducimus ea! At inventore sapiente sed nulla! Lorem
+      ipsum dolor sit amet consectetur adipisicing elit. Pariatur a
+      necessitatibus asperiores! Voluptates praesentium, quisquam saepe magni ut
+      dolores odio quasi voluptatibus fugit, quam illo omnis nesciunt doloremque
+      amet tempore? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Possimus maiores consectetur, qui illo ducimus dignissimos alias quidem
+      sed iste laudantium voluptates incidunt id quia neque, minus unde iusto,
+      molestias vero! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      Nihil, recusandae! Vero a quis neque sit, fuga facere laboriosam aperiam
+      odit vitae eum cumque, architecto molestiae eligendi quos, non ea porro.
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci, cumque
+      suscipit tempora hic eligendi placeat praesentium totam, nostrum
+      dignissimos neque ipsam facilis delectus ducimus ea! At inventore sapiente
+      sed nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Pariatur a necessitatibus asperiores! Voluptates praesentium, quisquam
+      saepe magni ut dolores odio quasi voluptatibus fugit, quam illo omnis
+      nesciunt doloremque amet tempore? Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Possimus maiores consectetur, qui illo ducimus
+      dignissimos alias quidem sed iste laudantium voluptates incidunt id quia
+      neque, minus unde iusto, molestias vero! Lorem ipsum dolor sit, amet
+      consectetur adipisicing elit. Nihil, recusandae! Vero a quis neque sit,
+      fuga facere laboriosam aperiam odit vitae eum cumque, architecto molestiae
+      eligendi quos, non ea porro. Lorem ipsum dolor sit amet consectetur,
+      adipisicing elit. Adipisci, cumque suscipit tempora hic eligendi placeat
+      praesentium totam, nostrum dignissimos neque ipsam facilis delectus
+      ducimus ea! At inventore sapiente sed nulla! Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Pariatur a necessitatibus asperiores!
+      Voluptates praesentium, quisquam saepe magni ut dolores odio quasi
+      voluptatibus fugit, quam illo omnis nesciunt doloremque amet tempore?
+    </div>
+  );
 }

@@ -8,6 +8,8 @@ export type Products = {
   price: number;
   category: string;
   imageUrl: string;
+  averageRating: number;
+  reviewCount: number;
 };
 
 const products: Products[] = Array.from({ length: 20 }, (_, index) => {
@@ -19,7 +21,9 @@ const products: Products[] = Array.from({ length: 20 }, (_, index) => {
     slug: faker.helpers.slugify(name).toLowerCase(),
     price: Number(faker.commerce.price()),
     category: faker.commerce.department(),
-    imageUrl: `https://picsum.photos/seed/${index + 1}/300/450`,
+    imageUrl: `https://picsum.photos/seed/${index + 1}/200/350`,
+    averageRating: faker.number.int({ min: 0, max: 5 }),
+    reviewCount: faker.number.int(),
   };
 });
 

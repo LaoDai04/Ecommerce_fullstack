@@ -7,6 +7,8 @@ export type Item = {
   price: number;
   category: string;
   imageUrl: string;
+  averageRating: number;
+  reviewCount: number;
 };
 
 export default function useGetItems() {

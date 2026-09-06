@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@keyframes carousel {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 20px));
+  }
+}
+
 :root {
   --background: #e0f1d8;
   --foreground: #171717;
