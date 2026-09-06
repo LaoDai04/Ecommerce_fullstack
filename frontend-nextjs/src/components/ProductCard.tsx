@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Rating from "@mui/material/Rating";
+import { Button } from "@mui/material";
+
 type ProductCardProps = {
   name: string;
   price: number;
@@ -15,50 +18,47 @@ export default function ProductCard({
   averageRating,
 }: ProductCardProps) {
   return (
-    <div className="relative w-[200px] mb-[2%] mt-[20%]">
+    <div
+      className="
+    relative
+      flex
+    flex-col
+    min-h-105
+    w-50
+    shrink
+    min-w-0
+    rounded-[0.9rem]
+    bg-[#aac7b5fe]
+    p-1.5
+    
+  "
+    >
+      <div className="z-0 absolute inset-0 bottom-[50%] rounded-[0.7rem] bg-[#d3eedcfe]" />
+
       <Image
         src={imageUrl}
         alt={name}
         width={200}
         height={300}
-        className="
-          absolute
-         left-[5%]
-         bottom-[35%]
-          rounded-3xl 
-        "
+        className="rounded-3xl relative"
       />
 
-      <div
-        className=" 
-            p-1.5
-          flex
-          flex-col
-          justify-end
-          h-44
-          w-[110%]
-          rounded-[0.4rem]
-          bg-[#dcf9e7fe]
-          border-[0.4]
-        "
-      >
-        <div className="flex w-full items-center justify-between">
-          <h2 className="font-semibold">{name}</h2>
-          <button
-            type="button"
-            className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-base text-sm px-7 py-[0.3] text-center leading-5"
-          >
-            Green
-          </button>
+      <div className="relative flex w-full">
+        <h2 className="min-w-0 flex-1 overflow-hidden text-ellipsis line-clamp-2 font-semibold">
+          {name}
+        </h2>
+      </div>
+
+      <div className="mt-auto relative flex w-full items-center justify-between">
+        <div>${2112}</div>
+        <div className="flex items-center">
+          <Rating size="small" readOnly />
+          <span>{averageRating}</span>
+          <span>({reviewCount})</span>
         </div>
-        <div className="flex w-full items-center justify-between">
-          ${price}
-          <div className="flex">
-            <span>★★★★★</span>
-            <span>{averageRating}</span>
-            <span>({reviewCount})</span>
-          </div>
-        </div>
+      </div>
+      <div>
+        <Button className="w-full h-[20px] bg-amber-950">test</Button>
       </div>
     </div>
   );

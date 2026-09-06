@@ -18,28 +18,28 @@ export default function Home() {
       <ImageCarousel />
       <div className="flex gap-20">
         <ProductCard
-          name={"test"}
+          name={"Fresh Ceramic Table Fresh Ceramic Table123 12e2e11r11341"}
+          price={15}
+          imageUrl={"https://picsum.photos/seed/10/200/350"}
+          averageRating={4}
+          reviewCount={800}
+        ></ProductCard>
+        <ProductCard
+          name={"Fresh Ceramic Table Fresh Ceramic Table123 12e2e11r11341"}
+          price={15}
+          imageUrl={"https://picsum.photos/seed/10/200/350"}
+          averageRating={2}
+          reviewCount={111}
+        ></ProductCard>
+        <ProductCard
+          name={"Fresh Ceramic Table Fresh Ceramic Table123 12e2e11r11341"}
           price={0}
           imageUrl={"https://picsum.photos/seed/10/200/350"}
           averageRating={0}
           reviewCount={0}
         ></ProductCard>
         <ProductCard
-          name={"test"}
-          price={0}
-          imageUrl={"https://picsum.photos/seed/10/200/350"}
-          averageRating={0}
-          reviewCount={0}
-        ></ProductCard>
-        <ProductCard
-          name={"test"}
-          price={0}
-          imageUrl={"https://picsum.photos/seed/10/200/350"}
-          averageRating={0}
-          reviewCount={0}
-        ></ProductCard>
-        <ProductCard
-          name={"test"}
+          name={"Fresh Ceramic Table Fresh Ceramic Table123 12e2e11r11341"}
           price={0}
           imageUrl={"https://picsum.photos/seed/10/200/350"}
           averageRating={0}
