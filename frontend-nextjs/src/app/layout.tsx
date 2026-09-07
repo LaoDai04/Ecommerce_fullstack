@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="h-full">
-      <body className="h-full min-h-screen  flex flex-col">
+    <html className="h-full bg-[#e0f1d8] w-full">
+      <body className="h-full w-full flex flex-col ">
         <Providers>
           <Header />
           <CustomMainPageLayout>{children}</CustomMainPageLayout>

@@ -12,7 +12,7 @@ export type Products = {
   reviewCount: number;
 };
 
-const products: Products[] = Array.from({ length: 20 }, (_, index) => {
+const products: Products[] = Array.from({ length: 50 }, (_, index) => {
   const name = faker.commerce.productName();
 
   return {
@@ -23,7 +23,7 @@ const products: Products[] = Array.from({ length: 20 }, (_, index) => {
     category: faker.commerce.department(),
     imageUrl: `https://picsum.photos/seed/${index + 1}/200/350`,
     averageRating: faker.number.int({ min: 0, max: 5 }),
-    reviewCount: faker.number.int(),
+    reviewCount: faker.number.int({ min: 0, max: 9000 }),
   };
 });
 

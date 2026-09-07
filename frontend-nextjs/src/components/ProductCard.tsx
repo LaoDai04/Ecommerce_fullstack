@@ -20,13 +20,16 @@ export default function ProductCard({
   return (
     <div
       className="
+      my-20
     relative
       flex
     flex-col
-    min-h-105
-    w-50
-    shrink
-    min-w-0
+    min-h-130
+    max-w-60
+    min-w-60
+  sm:w-[180px]
+  lg:w-[200px]
+    shrink-0
     rounded-[0.9rem]
     bg-[#aac7b5fe]
     p-1.5
@@ -38,27 +41,38 @@ export default function ProductCard({
       <Image
         src={imageUrl}
         alt={name}
-        width={200}
-        height={300}
+        width={300}
+        height={400}
         className="rounded-3xl relative"
       />
 
       <div className="relative flex w-full">
-        <h2 className="min-w-0 flex-1 overflow-hidden text-ellipsis line-clamp-2 font-semibold">
+        <h2 className="min-w-0 leading-5 h-10 flex-1 overflow-hidden text-ellipsis line-clamp-2 font-semibold text-[15px]">
           {name}
         </h2>
       </div>
 
-      <div className="mt-auto relative flex w-full items-center justify-between">
-        <div>${2112}</div>
+      <div className=" my-1 relative flex w-full items-center justify-between">
+        <div>${price}</div>
         <div className="flex items-center">
           <Rating size="small" readOnly />
           <span>{averageRating}</span>
           <span>({reviewCount})</span>
         </div>
       </div>
-      <div>
-        <Button className="w-full h-[20px] bg-amber-950">test</Button>
+      <div className="items-center justify-center flex">
+        <Button
+          sx={{
+            backgroundColor: "#668440",
+            color: "white",
+            height: "20px",
+            width: "70%",
+            display: "flex",
+            borderRadius: "30px",
+          }}
+        >
+          Add To Cart
+        </Button>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <header className="relative">
-      <nav className="relative z-30  flex items-center py-0 px-6 bg-[#465E28] ">
+      <nav className="relative z-30  flex items-center px-6 bg-[#465E28] ">
         <Link
           href="/"
           className={
