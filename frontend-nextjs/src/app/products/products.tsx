@@ -14,17 +14,19 @@ export function Products() {
 
   return (
     <div>
-    {/* <br />
-    {isPending && <p>Loading...</p>}
-    {isError && <p>{error instanceof Error ? error.message : 'An error occurred'}</p>}
-    {data && (
-      <ul>
-        {data.map((item: Item) => (
-          <li key={item.itemId}>{item.itemName}</li>
-        ))}
-      </ul>
-    )}
-      <h1>Products</h1> */}
+      <br />
+      {isPending && <p>Loading...</p>}
+      {isError && (
+        <p>{error instanceof Error ? error.message : "An error occurred"}</p>
+      )}
+      {data && (
+        <ul>
+          {data.map((item: Item) => (
+            <li key={item.name}>{item.name}</li>
+          ))}
+        </ul>
+      )}
+      <h1>Products</h1>
     </div>
   );
 }

@@ -1,5 +1,4 @@
-import com.example.businessapp.model.Item;
-import com.example.businessapp.model.Order;
+package com.example.businessapp.model;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

@@ -54,14 +54,3 @@ CREATE TABLE order_item (
 -- Order ↔ Item: Many-to-Many, through order_item
 -- An Item can have many category values: One-to-Many
 
--- insert test records separately later copy below
--- INSERT INTO customer (customer_name, name, email)
--- VALUES
---     ('john_doe', 'John Doe', 'john@example.com'),
---     ('jane_smith', 'Jane Smith', 'jane@example.com');
-
--- INSERT INTO item (item_name, price, description)
--- VALUES
---     ('Bath Towel', 14.99, 'Soft cotton bath towel'),
---     ('Shower Curtain', 24.99, 'Water-resistant shower curtain'),
---     ('Kitchen Sponge', 5.99, 'Multi-purpose cleaning sponge');

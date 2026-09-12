@@ -1,0 +1,15 @@
+spring:
+  config:
+    import:
+      - optional:file:./.env[.properties]
+  datasource:
+    url: jdbc:mysql://${DB_HOST_DEV}:${DB_PORT_DEV}/${DB_NAME_DEV}
+    username: ${DB_USERNAME_DEV}
+    password: ${DB_PASSWORD_DEV}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    locations:
+      - classpath:db/migration
+      - classpath:db/dev
+server:
+  port: 8080

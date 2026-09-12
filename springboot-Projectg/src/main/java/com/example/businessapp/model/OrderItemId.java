@@ -1,3 +1,5 @@
+package com.example.businessapp.model;
+
 import java.util.Objects;
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;

@@ -1,14 +1,30 @@
-# Ecommerce-Springboot-Projectg
-MakingSpringBootProjectBecauseImUnemployed
-just for fun project
+# Ecommerce Spring Boot Backend
 
-## API documentation (Swagger)
+Spring Boot REST API for the E-Commerce application.
 
-The backend exposes OpenAPI/Swagger UI when the application is running.
+## API Documentation
 
-- Local UR: http://localhost:8080/swagger-ui/index.html
-- OpenAPI JSON: http://localhost:8080/v3/api-docs
+The backend exposes OpenAPI documentation through Swagger UI when the
+application is running
 
--  the application is running (mvn spring-boot:run or java -jar target/myproject-0.0.1-SNAPSHOT.jar).
-- CORS for frontend dev ports http://localhost:3000 and http://127.0.0.1:5173
+### OpenAPI JSON
 
+http://localhost:8080/v3/api-docs
+
+## Running the Application
+
+### Start with Maven Wrapper
+
+Windows:
+
+```bash
+.\mvnw.cmd spring-boot:run
+```
+
+macOS/Linux:
+
+./mvnw spring-boot:run
+
+### Once running, Swagger UI is available at:
+
+http://localhost:8080/swagger-ui/index.html

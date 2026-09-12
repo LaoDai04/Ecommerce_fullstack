@@ -20,7 +20,8 @@
 /*.project
 
 # VS Code files
-/.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # Operating system files
 .DS_Store
