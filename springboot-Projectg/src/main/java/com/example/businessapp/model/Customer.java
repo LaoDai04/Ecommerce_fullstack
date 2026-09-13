@@ -17,9 +17,6 @@ public class Customer {
     @Column(name = "customer_name", length = 50)
     private String customerName;
 
-    @Column(name = "name", length = 100)
-    private String name;
-
     @Column(name = "email", length = 150)
     private String email;
 
@@ -31,13 +28,11 @@ public class Customer {
 
     }
 
-    public Customer(String customerName, String name, String email) {
+    public Customer(String customerName, String email) {
         this.customerName = customerName;
-        this.name = name;
         this.email = email;
     }
 
-    // Getters and setters
     public Integer getCustomerId() {
         return customerId;
     }
@@ -52,14 +47,6 @@ public class Customer {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {

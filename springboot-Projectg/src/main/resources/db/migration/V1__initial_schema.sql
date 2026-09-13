@@ -1,7 +1,6 @@
 CREATE TABLE customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(50) NOT NULL,
-    name VARCHAR(100),
     email VARCHAR(150) UNIQUE NOT NULL,
     registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -17,24 +16,37 @@ CREATE TABLE orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('PENDING','PAID','SHIPPED','CANCELLED') NOT NULL DEFAULT 'PENDING',   -- ← comma needed here
+    total DECIMAL(10,2),
 
     CONSTRAINT fk_order_customer
         FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id)
 );
 
+CREATE TABLE category (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL UNIQUE
+);
+
 CREATE TABLE item_category (
     item_id INT NOT NULL,
-    category_value VARCHAR(255) NOT NULL,
+    category_id INT NOT NULL,
 
-    CONSTRAINT fk_item_category_item
-        FOREIGN KEY (item_id)
-        REFERENCES item(item_id)
+    PRIMARY KEY (item_id, category_id),
+
+    FOREIGN KEY (item_id)
+        REFERENCES item(item_id),
+
+    FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
 );
 
 CREATE TABLE order_item (
     order_id INT NOT NULL,
     item_id INT NOT NULL,
+    quantity Int NOT NULL DEFAULT 1,
+    unit_price DECIMAL(10,2) NOT NULL,
 
     CONSTRAINT pk_order_item
         PRIMARY KEY (order_id, item_id),

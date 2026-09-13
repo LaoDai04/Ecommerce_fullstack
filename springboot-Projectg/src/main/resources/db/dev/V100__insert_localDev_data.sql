@@ -1,26 +1,25 @@
-INSERT INTO customer (customer_name, name, email)
+INSERT INTO customer (customer_name, email)
 VALUES
-('john_doe', 'John Doe', 'john.doe@example.com'),
-('jane_smith', 'Jane Smith', 'jane.smith@example.com'),
-('michael_johnson', 'Michael Johnson', 'michael.johnson@example.com'),
-('emily_williams', 'Emily Williams', 'emily.williams@example.com'),
-('david_brown', 'David Brown', 'david.brown@example.com'),
-('sarah_davis', 'Sarah Davis', 'sarah.davis@example.com'),
-('james_miller', 'James Miller', 'james.miller@example.com'),
-('olivia_wilson', 'Olivia Wilson', 'olivia.wilson@example.com'),
-('daniel_moore', 'Daniel Moore', 'daniel.moore@example.com'),
-('sophia_taylor', 'Sophia Taylor', 'sophia.taylor@example.com'),
-('matthew_anderson', 'Matthew Anderson', 'matthew.anderson@example.com'),
-('ava_thomas', 'Ava Thomas', 'ava.thomas@example.com'),
-('christopher_jackson', 'Christopher Jackson', 'christopher.jackson@example.com'),
-('isabella_white', 'Isabella White', 'isabella.white@example.com'),
-('andrew_harris', 'Andrew Harris', 'andrew.harris@example.com'),
-('mia_martin', 'Mia Martin', 'mia.martin@example.com'),
-('joshua_thompson', 'Joshua Thompson', 'joshua.thompson@example.com'),
-('charlotte_garcia', 'Charlotte Garcia', 'charlotte.garcia@example.com'),
-('ryan_martinez', 'Ryan Martinez', 'ryan.martinez@example.com'),
-('amelia_robinson', 'Amelia Robinson', 'amelia.robinson@example.com');
-
+('John Doe', 'john.doe@example.com'),
+('Jane Smith', 'jane.smith@example.com'),
+('Michael Johnson', 'michael.johnson@example.com'),
+('Emily Williams', 'emily.williams@example.com'),
+('David Brown', 'david.brown@example.com'),
+('Sarah Davis', 'sarah.davis@example.com'),
+('James Miller', 'james.miller@example.com'),
+('Olivia Wilson', 'olivia.wilson@example.com'),
+('Daniel Moore', 'daniel.moore@example.com'),
+('Sophia Taylor', 'sophia.taylor@example.com'),
+('Matthew Anderson', 'matthew.anderson@example.com'),
+('Ava Thomas', 'ava.thomas@example.com'),
+('Christopher Jackson', 'christopher.jackson@example.com'),
+('Isabella White', 'isabella.white@example.com'),
+('Andrew Harris', 'andrew.harris@example.com'),
+('Mia Martin', 'mia.martin@example.com'),
+('Joshua Thompson', 'joshua.thompson@example.com'),
+('Charlotte Garcia', 'charlotte.garcia@example.com'),
+('Ryan Martinez', 'ryan.martinez@example.com'),
+('Amelia Robinson', 'amelia.robinson@example.com');
 
 
 INSERT INTO item (item_name, price, description)
@@ -47,64 +46,59 @@ VALUES
 ('Overnight Hydration Mask', 22.99, 'Overnight mask for extra hydration.');
 
 
-INSERT INTO item_category (item_id, category_value)
+INSERT INTO category (category_name)
 VALUES
-(1, 'Cleansers'),
-(1, 'Skin Care'),
+('Cleansers'),
+('Skin Care'),
+('Serums'),
+('Vitamin C'),
+('Moisturizers'),
+('Sunscreen'),
+('Masks'),
+('Retinol'),
+('Acne'),
+('Exfoliants'),
+('Eye Care'),
+('Lip Care'),
+('New Arrivals');
 
-(2, 'Cleansers'),
-(2, 'Skin Care'),
-
-(3, 'Serums'),
-(3, 'Vitamin C'),
-
-(4, 'Serums'),
-(4, 'Skin Care'),
-
-(5, 'Moisturizers'),
-(5, 'Skin Care'),
-
-(6, 'Moisturizers'),
-(6, 'Skin Care'),
-
-(7, 'Sunscreen'),
-(7, 'Skin Care'),
-
-(8, 'Sunscreen'),
-(8, 'Skin Care'),
-
-(9, 'Masks'),
-(9, 'Skin Care'),
-
-(10, 'Masks'),
-(10, 'Skin Care'),
-
-(11, 'Serums'),
-(11, 'Retinol'),
-
-(12, 'Serums'),
-(12, 'Skin Care'),
-
-(13, 'Acne'),
-(13, 'Skin Care'),
-
-(14, 'Exfoliants'),
-(14, 'Skin Care'),
-
-(15, 'Eye Care'),
-(15, 'Skin Care'),
-
-(16, 'Lip Care'),
-(16, 'Skin Care'),
-
-(17, 'Skin Care'),
-(17, 'New Arrivals'),
-
-(18, 'Skin Care'),
-(18, 'New Arrivals'),
-
-(19, 'Serums'),
-(19, 'New Arrivals'),
-
-(20, 'Masks'),
-(20, 'New Arrivals');
+INSERT INTO item_category (item_id, category_id)
+SELECT 1, category_id FROM category WHERE category_name IN ('Cleansers', 'Skin Care')
+UNION ALL
+SELECT 2, category_id FROM category WHERE category_name IN ('Cleansers', 'Skin Care')
+UNION ALL
+SELECT 3, category_id FROM category WHERE category_name IN ('Serums', 'Vitamin C')
+UNION ALL
+SELECT 4, category_id FROM category WHERE category_name IN ('Serums', 'Skin Care')
+UNION ALL
+SELECT 5, category_id FROM category WHERE category_name IN ('Moisturizers', 'Skin Care')
+UNION ALL
+SELECT 6, category_id FROM category WHERE category_name IN ('Moisturizers', 'Skin Care')
+UNION ALL
+SELECT 7, category_id FROM category WHERE category_name IN ('Sunscreen', 'Skin Care')
+UNION ALL
+SELECT 8, category_id FROM category WHERE category_name IN ('Sunscreen', 'Skin Care')
+UNION ALL
+SELECT 9, category_id FROM category WHERE category_name IN ('Masks', 'Skin Care')
+UNION ALL
+SELECT 10, category_id FROM category WHERE category_name IN ('Masks', 'Skin Care')
+UNION ALL
+SELECT 11, category_id FROM category WHERE category_name IN ('Serums', 'Retinol')
+UNION ALL
+SELECT 12, category_id FROM category WHERE category_name IN ('Serums', 'Skin Care')
+UNION ALL
+SELECT 13, category_id FROM category WHERE category_name IN ('Acne', 'Skin Care')
+UNION ALL
+SELECT 14, category_id FROM category WHERE category_name IN ('Exfoliants', 'Skin Care')
+UNION ALL
+SELECT 15, category_id FROM category WHERE category_name IN ('Eye Care', 'Skin Care')
+UNION ALL
+SELECT 16, category_id FROM category WHERE category_name IN ('Lip Care', 'Skin Care')
+UNION ALL
+SELECT 17, category_id FROM category WHERE category_name IN ('Skin Care', 'New Arrivals')
+UNION ALL
+SELECT 18, category_id FROM category WHERE category_name IN ('Skin Care', 'New Arrivals')
+UNION ALL
+SELECT 19, category_id FROM category WHERE category_name IN ('Serums', 'New Arrivals')
+UNION ALL
+SELECT 20, category_id FROM category WHERE category_name IN ('Masks', 'New Arrivals');

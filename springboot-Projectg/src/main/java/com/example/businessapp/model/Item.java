@@ -22,21 +22,20 @@ public class Item {
     @Column(name = "description")
     private String description;
 
-    @ElementCollection
-    @CollectionTable(name = "item_category", joinColumns = @JoinColumn(name = "item_ID"))
-    @Column(name = "category_value")
-    private List<String> category;
+    @ManyToMany
+    @JoinTable(name = "item_category", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> categories;
 
     public Item() {
 
     }
 
-    public Item(Integer itemId, String itemName, BigDecimal price, String description, List<String> category) {
+    public Item(Integer itemId, String itemName, BigDecimal price, String description, List<Category> category) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.price = price;
         this.description = description;
-        this.category = category;
+        this.categories = category;
     }
 
     public Integer getItemId() {
@@ -71,12 +70,12 @@ public class Item {
         this.description = description;
     }
 
-    public List<String> getCategory() {
-        return category;
+    public List<Category> getCategory() {
+        return categories;
     }
 
-    public void setCategory(List<String> category) {
-        this.category = category;
+    public void setCategory(List<Category> category) {
+        this.categories = category;
     }
 
 }

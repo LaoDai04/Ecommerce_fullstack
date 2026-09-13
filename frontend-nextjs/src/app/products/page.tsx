@@ -3,67 +3,79 @@
 import React from "react";
 import { Box, Chip, FormControl, InputLabel, MenuItem } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
+import useGetItems from "@/hooks/useGetItems";
+import ProductCard from "@/components/ProductCard";
+import useGetCategory, { type Category } from "@/hooks/useGetCategory";
 
 export default function Page() {
+  const { data: allItems, isPending, isError, error } = useGetItems();
+  const { data: categoryData } = useGetCategory();
+
   return (
     <div className="grid grid-cols-[250px_1fr] h-fit gap-4">
-      {/* First column */}
       <div className="bg-[#9BAC8B] flex flex-col items-center p-5 gap-y-20 ">
-        <MultipleSelectChip />
-        <MultipleSelectChip />
-        <MultipleSelectChip />
-        <MultipleSelectChip />
-        <MultipleSelectChip />
-        <MultipleSelectChip />
-        <MultipleSelectChip />
-        <MultipleSelectChip />
+        <MultipleSelectCategoryDropdown
+          label="Category"
+          options={categoryData ?? []}
+        />
       </div>
-
-      {/* Second column */}
       <div className="grid grid-rows-[200px_1fr] gap-4">
         <div className="bg-[#d6e0d1]">05</div>
 
-        <div className="bg-[#E9EBE8]">06</div>
+        <div className="bg-[#E9EBE8] grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] overflow-auto justify-items-center">
+          {allItems?.map((item) => {
+            return (
+              <div key={item.id}>
+                <ProductCard
+                  name={item.name}
+                  price={item.price}
+                  imageUrl={item.imageUrl}
+                  reviewCount={item.reviewCount}
+                  averageRating={item.averageRating}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
 
-function MultipleSelectChip() {
-  const [personName, setPersonName] = React.useState<string[]>([]);
+function MultipleSelectCategoryDropdown({
+  label,
+  options,
+}: {
+  label: string;
+  options: Category[];
+}) {
+  const [filter, setFilter] = React.useState<number[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<number[]>) => {
+    console.log(event);
     const {
       target: { value },
     } = event;
 
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+      const newFilter =
+    typeof value === "string"
+      ? value.split(",").map(Number)
+      : value.map(Number);
+
+  setFilter(newFilter);
   };
 
   return (
-    <FormControl className="w-40">
-      <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+    <FormControl className="w-full">
+      <InputLabel id="demo-multiple-chip-label">{label}</InputLabel>
 
       <Select
         labelId="demo-multiple-chip-label"
         id="demo-multiple-chip"
         multiple
-        value={personName}
+        value={filter}
         onChange={handleChange}
-        label="Chip"
+        label={label}
         fullWidth
         renderValue={(selected) => (
           <Box
@@ -74,14 +86,21 @@ function MultipleSelectChip() {
             }}
           >
             {selected.map((value) => (
-              <Chip key={value} label={value} />
+              <Chip
+                className="!bg-[#daf1c749] !text-white"
+                key={value}
+                label={
+                  options.find((option) => option.categoryId === value)
+                    ?.categoryName ?? value
+                }
+              />
             ))}
           </Box>
         )}
       >
-        {names.map((name) => (
-          <MenuItem key={name} value={name}>
-            {name}
+        {options.map((category) => (
+          <MenuItem key={category.categoryId} value={category.categoryId}>
+            {category.categoryName}
           </MenuItem>
         ))}
       </Select>
