@@ -6,8 +6,8 @@ export type Category = {
   categoryName: string;
 };
 
-const category: Category[] = Array.from({ length: 25 }, (_, index) => {
-  const name = faker.commerce.productMaterial();
+const category: Category[] = Array.from({ length: 10 }, (_, index) => {
+  const name = faker.commerce.department();
 
   return {
     categoryId: index + 1,

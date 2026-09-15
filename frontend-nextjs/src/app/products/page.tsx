@@ -6,11 +6,13 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import useGetItems from "@/hooks/useGetItems";
 import ProductCard from "@/components/ProductCard";
 import useGetCategory, { type Category } from "@/hooks/useGetCategory";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Page() {
   const { data: allItems, isPending, isError, error } = useGetItems();
   const { data: categoryData } = useGetCategory();
-
+  console.log("allItems:", allItems);
+  console.log("categoryData:", categoryData);
   return (
     <div className="grid grid-cols-[250px_1fr] h-fit gap-4">
       <div className="bg-[#9BAC8B] flex flex-col items-center p-5 gap-y-20 ">
@@ -49,20 +51,31 @@ function MultipleSelectCategoryDropdown({
   label: string;
   options: Category[];
 }) {
-  const [filter, setFilter] = React.useState<number[]>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const handleChange = (event: SelectChangeEvent<number[]>) => {
-    console.log(event);
+  //the filter is getting a list of seleted id from the url itself
+  const filter = searchParams.get("categoryId")?.split(",").map(Number) ?? [];
+  console.log(filter);
+
+  const handleChange = (e: SelectChangeEvent<number[]>) => {
     const {
-      target: { value },
-    } = event;
+      target: { value }, //this function fires when click on item in the dropdown, grabs the id, MUI also provides list of selected ids in this object
+    } = e;
 
-      const newFilter =
-    typeof value === "string"
-      ? value.split(",").map(Number)
-      : value.map(Number);
+    const listOfselectedCate = //check if it's integer
+      typeof value === "string"
+        ? value.split(",").map(Number)
+        : value.map(Number);
 
-  setFilter(newFilter);
+    const params = new URLSearchParams(searchParams); // create route object with the same searchparams object
+
+    if (listOfselectedCate.length > 0) {
+      params.set("categoryId", listOfselectedCate.join(",")); //set the category id filter key and the selected ids
+    } else {
+      params.delete("categoryId"); //else delete the key from the url
+    }
+    router.push(`?${params.toString()}`); // push the ids into the url. th filter const then rerenders with the new ids
   };
 
   return (

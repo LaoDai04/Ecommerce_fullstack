@@ -3,9 +3,10 @@ import "./ProductDropdown.css";
 import type { Item } from "@/hooks/useGetItems";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import useGetCategory from "@/hooks/useGetCategory";
 
 export default function ProductsDropdown() {
-  const { data, isPending, isError, error } = useGetItems();
+  const { data, isPending, isError, error } = useGetCategory();
   const [hoverValue, setHoverValue] = useState<string | null>(null);
 
   if (isError) {
@@ -15,55 +16,40 @@ export default function ProductsDropdown() {
   if (!data) {
     return null;
   }
-
-  const filteredProducts = useMemo(() => {
-    return (data ?? []).reduce<Record<string, Item[]>>((groups, product) => {
-      if (!groups[product.category]) {
-        groups[product.category] = [];
-      }
-
-      groups[product.category].push(product);
-
-      return groups;
-    }, {});
-  }, [data]);
-
+  // TODO: fix how dropdown behave with the new category type
   return (
     <div className="productsDropdown">
       <div className=" flex-direction: column justify-center overflow-auto">
         <h1 className="font-semibold text-[1.3rem] px-3 text-[#4a544fd0]">
           Category
         </h1>
-        {Object.entries(filteredProducts).map(([category, products]) => (
+        {data.map((category) => (
           <div
-            key={category}
+            key={category.categoryId}
             className="flex  flex-col w-auto py-1 hover:bg-[#2b6148]"
-            onMouseEnter={() => {
-              setHoverValue(category);
-            }}
           >
             <Link
-              href={"products/" + category}
+              href={"products?categoryId" + category.categoryId}
               className="block w-full px-7 py-1 font-semibold text-[1rem] text-[#f2f3f2e2]"
             >
-              {category}
+              {category.categoryName}
             </Link>
           </div>
         ))}
       </div>
-
+      {/* 
       <div className="w-auto p-3">
         {hoverValue &&
-          filteredProducts[hoverValue]?.map((product) => (
+          data.map((product) => (
             <Link
-              href={"/products/" + hoverValue + "/" + product.slug}
-              key={product.id}
+              href={"/products/" + hoverValue + "/" + product.categoryName}
+              key={product.categoryId}
               className="block w-full py-1 px-1 font-semibold text-[0.9rem] text-[#f2f3f2e2] hover:underline"
             >
-              {product.name}
+              {product.categoryName}
             </Link>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 }

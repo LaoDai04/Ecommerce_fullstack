@@ -10,12 +10,6 @@ type NavItem = {
   href: string;
 };
 
-const navBar: NavItem[] = [
-  { name: "Products", href: "/products" },
-  { name: "Login", href: "/login" },
-  { name: "Register", href: "/register" },
-  { name: "Cart", href: "/cart" },
-];
 
 export default function Home() {
   const [category, setCategory] = useState<keyof typeof productLists>("new");
@@ -89,7 +83,7 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="flex gap-10 justify-evenly overflow-y- flex-0 ">
+      <div className="flex gap-10 justify-evenly overflow-y-hidden overflow-x-auto flex-0 ">
         {visibleProducts.map((item, index) => (
           <div
             key={item.id}
