@@ -9,14 +9,14 @@ import com.example.businessapp.repository.OrderRepository;
 
 @Service
 public class OrderHandler {
-        private final OrderRepository repo;
+    private final OrderRepository repo;
 
-        public OrderHandler(OrderRepository repo) {
-            this.repo = repo;
-        }
+    public OrderHandler(OrderRepository repo) {
+        this.repo = repo;
+    }
 
-        public List<Order> getAllOrders() {
-            return repo.findAll();
-        }
+    public List<Order> getAllOrders() {
+        return repo.findAll();
+    }
 
 }

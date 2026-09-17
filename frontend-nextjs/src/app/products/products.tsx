@@ -1,16 +1,12 @@
 "use client";
-import useGetItems from "../../hooks/useGetItems";
-
-export type Item = {
-  id: number;
-  name: string;
-  slug: string;
-  price: number;
-  category: string;
-};
+import { Skeleton } from "@mui/material";
+import useGetItems, { type Item } from "../../hooks/useGetItems";
 
 export function Products() {
-  const { data, isPending, isError, error } = useGetItems();
+  const { data, isLoading, isPending, isError, error } = useGetItems();
+  if (isLoading) {
+    return <Skeleton variant="rectangular" height={200} width={300} />;
+  }
 
   return (
     <div>
@@ -22,7 +18,7 @@ export function Products() {
       {data && (
         <ul>
           {data.map((item: Item) => (
-            <li key={item.name}>{item.name}</li>
+            <li key={item.id}>{item.name}</li>
           ))}
         </ul>
       )}
