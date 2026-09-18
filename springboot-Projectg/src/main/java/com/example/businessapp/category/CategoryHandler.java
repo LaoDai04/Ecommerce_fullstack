@@ -1,12 +1,10 @@
-package com.example.businessapp.service;
+package com.example.businessapp.category;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.businessapp.model.Category;
-import com.example.businessapp.repository.CategoryRepository;
-import com.example.businessapp.repository.CustomerRepository;
+import com.example.businessapp.customer.CustomerRepository;
 
 @Service
 public class CategoryHandler {

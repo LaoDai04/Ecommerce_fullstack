@@ -1,8 +1,6 @@
-package com.example.businessapp.repository;
+package com.example.businessapp.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.example.businessapp.model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

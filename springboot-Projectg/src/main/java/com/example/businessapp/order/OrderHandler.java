@@ -1,11 +1,8 @@
-package com.example.businessapp.service;
+package com.example.businessapp.order;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import com.example.businessapp.model.Order;
-import com.example.businessapp.repository.OrderRepository;
 
 @Service
 public class OrderHandler {

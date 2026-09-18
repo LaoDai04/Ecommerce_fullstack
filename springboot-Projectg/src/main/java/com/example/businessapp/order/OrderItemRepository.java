@@ -1,7 +1,4 @@
-package com.example.businessapp.repository;
-
-import com.example.businessapp.model.OrderItem;
-import com.example.businessapp.model.OrderItemId;
+package com.example.businessapp.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

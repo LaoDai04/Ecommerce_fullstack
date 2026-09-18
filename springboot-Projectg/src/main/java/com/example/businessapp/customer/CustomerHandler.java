@@ -1,12 +1,9 @@
-package com.example.businessapp.service;
+package com.example.businessapp.customer;
 
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import com.example.businessapp.model.Customer;
-import com.example.businessapp.repository.CustomerRepository;
 
 @Service
 public class CustomerHandler {

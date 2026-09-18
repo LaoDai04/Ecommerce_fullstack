@@ -1,9 +1,11 @@
-package com.example.businessapp.model;
+package com.example.businessapp.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.example.businessapp.customer.Customer;
 
 import jakarta.persistence.*;
 

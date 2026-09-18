@@ -1,13 +1,15 @@
-package com.example.businessapp.model;
+package com.example.businessapp.products;
 
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.example.businessapp.category.Category;
+
 @Entity
 @Table(name = "item")
-public class Item {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
@@ -26,11 +28,11 @@ public class Item {
     @JoinTable(name = "item_category", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
-    public Item() {
+    public Products() {
 
     }
 
-    public Item(Integer itemId, String itemName, BigDecimal price, String description, List<Category> category) {
+    public Products(Integer itemId, String itemName, BigDecimal price, String description, List<Category> category) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.price = price;

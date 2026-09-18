@@ -1,10 +1,8 @@
-package com.example.businessapp.controller;
+package com.example.businessapp.order;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.businessapp.service.OrderHandler;
-import com.example.businessapp.model.Order;
 
 import java.util.List;
 

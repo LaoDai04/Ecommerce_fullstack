@@ -1,4 +1,6 @@
-package com.example.businessapp.model;
+package com.example.businessapp.order;
+
+import com.example.businessapp.products.Products;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -22,12 +24,12 @@ public class OrderItem {
     @ManyToOne
     @MapsId("itemId")
     @JoinColumn(name = "item_id")
-    private Item item;
+    private Products item;
 
     public OrderItem() {
     }
 
-    public OrderItem(Order order, Item item) {
+    public OrderItem(Order order, Products item) {
         this.order = order;
         this.item = item;
         this.id = new OrderItemId(order.getOrderId(), item.getItemId());
@@ -49,11 +51,11 @@ public class OrderItem {
         this.order = order;
     }
 
-    public Item getItem() {
+    public Products getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(Products item) {
         this.item = item;
     }
 }

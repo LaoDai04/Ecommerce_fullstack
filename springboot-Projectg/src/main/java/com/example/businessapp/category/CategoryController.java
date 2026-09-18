@@ -1,4 +1,4 @@
-package com.example.businessapp.controller;
+package com.example.businessapp.category;
 
 import java.util.List;
 
@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.businessapp.model.Category;
-import com.example.businessapp.service.CategoryHandler;
 
 @RestController
 @RequestMapping("/category")

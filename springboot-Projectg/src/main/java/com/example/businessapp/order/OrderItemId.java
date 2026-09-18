@@ -1,4 +1,4 @@
-package com.example.businessapp.model;
+package com.example.businessapp.order;
 
 import java.util.Objects;
 import jakarta.persistence.Embeddable;

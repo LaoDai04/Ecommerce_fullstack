@@ -1,4 +1,4 @@
-package com.example.businessapp.model;
+package com.example.businessapp.category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
