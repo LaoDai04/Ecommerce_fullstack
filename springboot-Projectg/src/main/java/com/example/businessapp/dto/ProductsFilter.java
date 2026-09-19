@@ -1,9 +1,10 @@
 package com.example.businessapp.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductsFilter {
-    private Integer categoryId;
+    private List<Integer> categoryId;
     private BigDecimal minPrice;
     private BigDecimal maxPrice;
     private BigDecimal minRating;
@@ -17,7 +18,7 @@ public class ProductsFilter {
     }
 
     public ProductsFilter(
-            Integer categoryId,
+            List<Integer> categoryId,
             BigDecimal minPrice,
             BigDecimal maxPrice,
             BigDecimal minRating,
@@ -37,11 +38,11 @@ public class ProductsFilter {
         this.size = size;
     }
 
-    public Integer getCategory() {
+    public List<Integer> getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(List<Integer> categoryId) {
         this.categoryId = categoryId;
     }
 

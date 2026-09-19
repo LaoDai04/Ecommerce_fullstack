@@ -1,0 +1,6 @@
+ALTER TABLE customer
+    ADD COLUMN password_hash VARCHAR(255) NULL,
+    ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'CUSTOMER',
+    ADD CONSTRAINT chk_customer_role CHECK (role IN ('CUSTOMER', 'ADMIN'));
+
+    
