@@ -13,5 +13,11 @@ spring:
     locations:
       - classpath:db/migration
       - classpath:db/dev
+logging:
+  level:
+    "[org.springframework.security]": DEBUG
 server:
   port: 8080
+jwt:
+  secret: ${SECRET_APP}
+  expiration-ms: ${JWT_EXPIRATION_MS}
