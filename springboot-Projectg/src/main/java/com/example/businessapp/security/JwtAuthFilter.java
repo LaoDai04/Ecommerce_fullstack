@@ -32,17 +32,21 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String header = req.getHeader("Authorization");
         log.info("Incoming request: {} {}", req.getMethod(), req.getRequestURI());
+
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
+            log.info("token ", token);
             try {
                 String email = jwtService.extractEmail(token);
                 log.info("Token valid, email = {}", email);
 
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null,
                         List.of());
+
                 auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
 
                 SecurityContextHolder.getContext().setAuthentication(auth);
+                
             } catch (JwtException e) {
                 log.warn("Invalid token: {}", e.getMessage());
             }

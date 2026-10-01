@@ -1,0 +1,8 @@
+$kind: http-request
+name: New Request
+url: http://localhost:8080/auth/register
+method: POST
+body:
+  type: json
+  content: '{ "customerName": "alice", "email": "alice@test.com", "password": "hunter2" }'
+order: 1790802782430
