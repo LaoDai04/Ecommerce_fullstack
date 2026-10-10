@@ -23,25 +23,32 @@ public class JwtService {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String email) {
+    public String generateToken(String email, String role) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMs);
 
         return Jwts.builder()
                 .subject(email)
                 .issuedAt(now)
+                .claim("role", role)
                 .expiration(expiry)
                 .signWith(key)
                 .compact();
     }
 
-    public String extractEmail(String token) {
-        Claims claims = Jwts.parser()
+    private Claims parseClaims(String token) {
+        return Jwts.parser()
                 .verifyWith(key)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
+    }
 
-        return claims.getSubject();
+    public String extractRole(String token) {
+        return parseClaims(token).get("role", String.class);
+    }
+
+    public String extractEmail(String token) {
+        return parseClaims(token).getSubject();
     }
 }

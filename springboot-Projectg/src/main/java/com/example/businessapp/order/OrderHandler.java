@@ -16,4 +16,8 @@ public class OrderHandler {
         return repo.findAll();
     }
 
+    public List<Order> getUserOrder(String email){
+        return repo.findByCustomerEmail(email);
+    }
+
 }

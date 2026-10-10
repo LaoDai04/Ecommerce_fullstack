@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -31,22 +32,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws ServletException, IOException {
         String header = req.getHeader("Authorization");
-        log.info("Incoming request: {} {}", req.getMethod(), req.getRequestURI());
 
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
-            log.info("token ", token);
             try {
                 String email = jwtService.extractEmail(token);
-                log.info("Token valid, email = {}", email);
+                String role = jwtService.extractRole(token);
+
+                List<SimpleGrantedAuthority> authorities = role == null ? List.of() // this null check will handle for token that doesn't have role
+                        : List.of(new SimpleGrantedAuthority(role));
 
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null,
-                        List.of());
+                        authorities);
 
                 auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
 
                 SecurityContextHolder.getContext().setAuthentication(auth);
-                
+
             } catch (JwtException e) {
                 log.warn("Invalid token: {}", e.getMessage());
             }

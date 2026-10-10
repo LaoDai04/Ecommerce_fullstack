@@ -24,11 +24,6 @@ public class CustomerController {
         return handler.getAllCustomers();
     }
 
-    @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
-        return ResponseEntity.ok(handler.createCustomer(customer));
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
         return handler.getCustomerById(id);
