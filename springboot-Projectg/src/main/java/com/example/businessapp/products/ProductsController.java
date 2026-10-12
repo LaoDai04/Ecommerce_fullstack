@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.businessapp.dto.ProductsFilter;
+import com.example.businessapp.dto.ProductsResponse;
 
 @RestController
 @RequestMapping("/products")
@@ -19,7 +20,7 @@ public class ProductsController {
     }
 
     @GetMapping
-    public List<Products> getFilteredProducts(@ParameterObject ProductsFilter filter) {
+    public List<ProductsResponse> getFilteredProducts(@ParameterObject ProductsFilter filter) {
         return service.getItems(filter);
     }
 

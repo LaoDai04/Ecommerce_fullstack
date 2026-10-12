@@ -1,42 +1,8 @@
 package com.example.businessapp.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-public class ProductsResponse {
-    private Long id;
-    private String name;
-    private BigDecimal price;
-
-    public ProductsResponse() {
-    }
-
-    public ProductsResponse(Long id, String name, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+public record ProductsResponse(Integer itemId, String itemName, BigDecimal price,
+        String description, String imageUrl, List<CategoryResponse> category) {
 }

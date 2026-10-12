@@ -55,7 +55,7 @@ function MultipleSelectCategoryDropdown({
   const searchParams = useSearchParams();
 
   //the filter is getting a list of seleted id from the url itself
-  const filter = searchParams.get("categoryId")?.split(",").map(Number) ?? [];
+  const filter = searchParams.get("categoryId")?.split(",").map(Number) ?? []; //check the curren url and grab existing param if there's any
   console.log(filter);
 
   const handleChange = (e: SelectChangeEvent<number[]>) => {
@@ -75,7 +75,7 @@ function MultipleSelectCategoryDropdown({
     } else {
       params.delete("categoryId"); //else delete the key from the url
     }
-    router.push(`?${params.toString()}`); // push the ids into the url. th filter const then rerenders with the new ids
+    router.replace(`?${params.toString()}`); // push the ids into the url. th filter const then rerenders with the new ids
   };
 
   return (

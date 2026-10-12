@@ -1,0 +1,1 @@
+UPDATE item SET image_key = CONCAT(item_id, '/200/350');

@@ -24,6 +24,9 @@ public class Products {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "image_key")
+    private String imageKey;
+
     @ManyToMany
     @JoinTable(name = "item_category", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
@@ -32,12 +35,14 @@ public class Products {
 
     }
 
-    public Products(Integer itemId, String itemName, BigDecimal price, String description, List<Category> category) {
+    public Products(Integer itemId, String itemName, BigDecimal price, String description, List<Category> category,
+            String imageKey) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.price = price;
         this.description = description;
         this.categories = category;
+        this.imageKey = imageKey;
     }
 
     public Integer getItemId() {
@@ -80,4 +85,11 @@ public class Products {
         this.categories = category;
     }
 
+    public String getImageKey() {
+        return imageKey;
+    }
+
+    public void setImageKey(String ImageKey) {
+        this.imageKey = ImageKey;
+    }
 }

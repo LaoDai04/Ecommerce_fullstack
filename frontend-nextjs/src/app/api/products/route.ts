@@ -1,60 +1,45 @@
 import { NextRequest, NextResponse } from "next/server";
-import { faker } from "@faker-js/faker";
 
-type Category = {
-  categoryId: number;
-  categoryName: string;
-};
-
-const CATEGORY_POOL: Category[] = Array.from({ length: 3 }, (_, i) => ({
-  categoryId: i + 1,
-  categoryName: faker.commerce.department(),
-}));
-
-function fakeCategories(): Category[] {
-  const count = faker.number.int({ min: 1, max: 3 });
-  return faker.helpers.arrayElements(CATEGORY_POOL, count);
-}
-export type Products = {
-  id: number;
-  name: string;
-  slug: string;
-  price: number;
-  category: Category[];
-  imageUrl: string;
-  averageRating: number;
-  reviewCount: number;
-};
-
-const products: Products[] = Array.from({ length: 10 }, (_, index) => {
-  const name = faker.commerce.productName();
-
-  return {
-    id: index + 1,
-    name,
-    slug: faker.helpers.slugify(name).toLowerCase(),
-    price: Number(faker.commerce.price()),
-    category: fakeCategories(),
-    imageUrl: `https://picsum.photos/seed/${index + 1}/200/350`,
-    averageRating: faker.number.int({ min: 0, max: 5 }),
-    reviewCount: faker.number.int({ min: 0, max: 9000 }),
-  };
-});
-
-export async function GET(mockRequest: NextRequest) { //get the request
-  const param = mockRequest.nextUrl.searchParams.get("categoryId");
-  if (!param) {
-    return NextResponse.json(products, { status: 200 });
+export async function GET(req: NextRequest) {
+  if (process.env.USE_MOCK === "true") {
+    const { filterMockProducts } = await import("@/mocks/products");
+    const param = req.nextUrl.searchParams.get("categoryId");
+    return NextResponse.json(filterMockProducts(param));
   }
-  const ids = param
-    .split(",")
-    .map(Number)
-    .filter((n) => !Number.isNaN(n));
 
-  const filteredItems = products.filter((item) =>
-    item.category.some((c) => ids.includes(c.categoryId)),
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/products${req.nextUrl.search}`,
+    { cache: "no-store" },
   );
-  console.log(typeof ids, "whats in here");
+  console.log(`test ${process.env.BACKEND_URL}/products${req.nextUrl.search}`);
+  if (!res.ok) {
+    return NextResponse.json(
+      { error: "Backend error" },
+      { status: res.status },
+    );
+  }
 
-  return NextResponse.json(filteredItems, { status: 200 });
+  type BackendProduct = {
+    itemId: number;
+    itemName: string;
+    price: number;
+    description: string;
+    imageUrl: string;
+    category: { categoryId: number; categoryName: string }[];
+  };
+
+  const data: BackendProduct[] = await res.json();
+
+  const products = data.map((p) => ({
+    id: p.itemId,
+    name: p.itemName,
+    slug: p.itemName.toLowerCase().replace(/\s+/g, "-"),
+    price: p.price,
+    category: p.category,
+    imageUrl: p.imageUrl,
+    averageRating: 0, //TODO: ADD TABLE FOR REVIEW COUNT, AND QUERY TO CALCULATE AVERAGE. A WHOLE SEPARATE FEATURE
+    reviewCount: 0,
+  }));
+
+  return NextResponse.json(products);
 }

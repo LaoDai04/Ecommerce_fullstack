@@ -1,0 +1,1 @@
+ALTER TABLE item ADD COLUMN image_key VARCHAR(255) NULL;
