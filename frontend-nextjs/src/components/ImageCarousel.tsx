@@ -12,7 +12,8 @@ export default function ImageCarousel() {
   if (!data) return null;
 
   return (
-    <div className="relative overflow-hidden ">
+    //TODO: add error handling this parent div. design in figma
+    <div className="relative overflow-hidden "> 
       <div
         className="
       absolute left-0 top-0 z-10 h-full w-30

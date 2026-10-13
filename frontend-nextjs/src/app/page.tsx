@@ -10,7 +10,6 @@ type NavItem = {
   href: string;
 };
 
-
 export default function Home() {
   const [category, setCategory] = useState<keyof typeof productLists>("new");
   const [page, setPage] = useState(0);
@@ -20,9 +19,9 @@ export default function Home() {
 
   const productLists = useMemo(
     () => ({
-      new: (data ?? []).slice(0, 15),
-      cheap: (data ?? []).slice(0, 15),
-      trending: (data ?? []).slice(10, 16),
+      trending: (data ?? []).slice(5, 10),
+      cheap: (data ?? []).slice(10, 15),
+      new: (data ?? []).slice(15, 20),
     }),
     [data],
   );
@@ -83,6 +82,7 @@ export default function Home() {
         </button>
       </div>
 
+      {/* //TODO: add error handling this product cards parent div. design in figma */}
       <div className="flex gap-10 justify-evenly overflow-y-hidden overflow-x-auto flex-0 ">
         {visibleProducts.map((item, index) => (
           <div
@@ -93,7 +93,7 @@ export default function Home() {
             }}
           >
             <ProductCard
-              name={item.name + "Ergonomic Marble Cartset"}
+              name={item.name}
               imageUrl={item.imageUrl}
               price={item.price}
               averageRating={item.averageRating}
@@ -121,7 +121,7 @@ export default function Home() {
           >
             <path d="m15 18-6-6 6-6" />
           </svg>
-          Default
+          last page
         </button>
 
         {Array.from({ length: totalPages }).map((_, index) => {
@@ -136,7 +136,7 @@ export default function Home() {
           className="btn"
           onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
         >
-          Default
+          next page
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

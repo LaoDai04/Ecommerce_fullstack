@@ -26,7 +26,7 @@ export type Products = {
 };
 
 export const mockProducts: Products[] = Array.from(
-  { length: 10 },
+  { length: 30 },
   (_, index) => {
     const name = faker.commerce.productName();
 

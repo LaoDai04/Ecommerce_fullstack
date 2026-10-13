@@ -15,8 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html className="h-full bg-[#e0f1d8] w-full">
+    
       <body className="h-full w-full flex flex-col ">
-        <Providers>
+        <Providers>   {/*the main provider wrapper component*/}
           <Header />
           <CustomMainPageLayout>{children}</CustomMainPageLayout>
         </Providers>
