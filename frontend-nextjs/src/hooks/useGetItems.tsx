@@ -12,7 +12,7 @@ export type Item = {
   slug: string;
   price: number;
   category: Category[];
-  imageUrl: string;
+  imageUrl: string | null;
   averageRating: number;
   reviewCount: number;
 };

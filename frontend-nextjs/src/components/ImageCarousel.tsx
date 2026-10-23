@@ -1,7 +1,7 @@
 "use client";
 import useGetItems from "@/hooks/useGetItems";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import PlaceHolderImage from "./PlaceholderImage";
 
 export default function ImageCarousel() {
   const { data, isPending, isError, error } = useGetItems();
@@ -12,8 +12,7 @@ export default function ImageCarousel() {
   if (!data) return null;
 
   return (
-    //TODO: add error handling this parent div. design in figma
-    <div className="relative overflow-hidden "> 
+    <div className="relative overflow-hidden ">
       <div
         className="
       absolute left-0 top-0 z-10 h-full w-30
@@ -29,14 +28,22 @@ export default function ImageCarousel() {
         }}
       >
         {duplicateImageCarousel.map((item, index) => (
-          <Image
-            className="rounded-3xl shrink-0"
-            key={`${item.name}-${index}`}
-            src={item.imageUrl}
-            width={300}
-            height={300}
-            alt={item.name}
-          />
+          <div
+            key={`${item.id}-${index}`}
+            className="relative w-75 aspect-[2/3.5] shrink-0 overflow-hidden rounded-3xl"
+          >
+            {item.imageUrl ? (
+              <Image
+                src={item.imageUrl}
+                alt={item.name}
+                fill
+                sizes="300px"
+                className="object-cover"
+              />
+            ) : (
+              <PlaceHolderImage name={item.name} />
+            )}
+          </div>
         ))}
       </div>
 

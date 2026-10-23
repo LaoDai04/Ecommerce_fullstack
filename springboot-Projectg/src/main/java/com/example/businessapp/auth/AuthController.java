@@ -18,6 +18,8 @@ import com.example.businessapp.dto.LoginRequest;
 import com.example.businessapp.dto.MeResponse;
 import com.example.businessapp.dto.RegisterRequest;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -28,12 +30,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Customer> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<Customer> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
 

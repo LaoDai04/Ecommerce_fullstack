@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Rating from "@mui/material/Rating";
 import { Button } from "@mui/material";
+import PlaceHolderImage from "./PlaceholderImage";
 
 type ProductCardProps = {
   name: string;
@@ -42,18 +43,12 @@ export default function ProductCard({
             src={imageUrl}
             alt={name}
             fill
-            sizes="240px" //photos which are usually 1000–3000 pixels wide, sizes is one of the biggest page-speed savings on a product grid.
+            sizes="300px" //photos which are usually 1000–3000 pixels wide, sizes is one of the biggest page-speed savings on a product grid.
             // without sizex, cards downloads a much larger file than it needs.
             className="object-cover" // this crops matches with the wrapper
           />
         ) : (
-          <div
-            role="img"
-            aria-label={`No image available for ${name}`}
-            className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#d3eedcfe] to-[#aac7b5fe] text-sm font-medium text-[#668440]"
-          >
-            No image
-          </div>
+          <PlaceHolderImage name={name} />
         )}
       </div>
 
@@ -66,7 +61,7 @@ export default function ProductCard({
       <div className=" my-1 relative flex w-full items-center justify-between">
         <div>${price}</div>
         <div className="flex items-center">
-          <Rating size="small" readOnly />
+          <Rating value={averageRating} size="small" readOnly />
           <span>{averageRating}</span>
           <span>({reviewCount})</span>
         </div>
