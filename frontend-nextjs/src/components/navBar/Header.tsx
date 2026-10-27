@@ -119,7 +119,7 @@ export default function Header() {
             </svg>
           </Link>
           <Link
-            href={"/account"}
+            href={"/login"}
             className={`transition-transform duration-300 hover:-translate-y-1 `}
           >
             <svg
