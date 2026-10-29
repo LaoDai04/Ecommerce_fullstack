@@ -1,7 +1,9 @@
 "use client";
 
 import { Button } from "@mui/material";
+import { useState } from "react";
 export default function Page() {
+  const [me, setMe] = useState("");
   return (
     <div>
       <Button
@@ -16,8 +18,18 @@ export default function Page() {
           });
         }}
       >
-        test
+        login
       </Button>
+      <Button
+        onClick={async () => {
+          const res = await fetch("/api/auth/me");
+          const test = await res.text();
+          setMe(test);
+        }}
+      >
+        who am i
+      </Button>
+      {me}
     </div>
   );
 }
