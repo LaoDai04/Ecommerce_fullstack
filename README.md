@@ -1,9 +1,5 @@
-# E-Commerce Full Stack Application
 
-A full-stack e-commerce application I am building to practice
-production-style software development and cloud deployment.
-
-## Start Here
+## Start Here (outdated)
 
 Prerequisites:
 
@@ -72,26 +68,3 @@ will run at `http://localhost:3000`.
 ### Design
 
 [Figma Prototype](https://www.figma.com/design/1dRBuVOB7e9joVVXdYxElB/Untitled?node-id=29-475&t=y2dnRXoxoZPACVDU-1)
-
-### Current Features
-
-- Product browsing and categories
-- Customer registration
-- Product and customer REST APIs
-- MySQL database with Flyway migrations
-- AWS deployment using ECS and RDS
-- Docker containerization
-- CI/CD with GitHub Actions
-
-## Future Plans – Learn & Implement
-
-- JWT authentication and authorization
-- Redis caching
-- WebSocket functionality
-- AI-assisted features
-- API rate limiting
-- Elasticsearch / OpenSearch and Qdrant
-- BGE-M3 embeddings and vector search
-- LLM integration
-- Kafka and event-driven architecture
-- Microservices
